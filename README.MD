@@ -17,4 +17,4 @@ go run sutom.go
 Attention le fichier de dictionnaire n'est pas complet et il peut manquet des mots
 
 Exemple : 
-![Screenshot](screen_exemples.png)
+![Screenshot](https://github.com/fbattesti/sutom_helper/blob/master/screen_exemple.png?raw=true)
