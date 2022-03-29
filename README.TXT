@@ -12,5 +12,7 @@ Start :
 # Dans le dossier du projet 
 go run sutom.go 
 
+# ou avec le binaire linux
+./sutom 
 
 Attention le fichier de dictionnaire n'est pas complet et il peut manquet des mots
