@@ -62,7 +62,7 @@ func questionaire() (searchWord searchWord) {
 	// remove letter already set in know letter in letterNotInThisWord string
 	for _, letter := range lettersNotInThisWord {
 		if strings.Contains(searchWord.knowLetter, string(letter)) || strings.Contains(searchWord.knowLetterWithPosition, string(letter)) {
-			break
+			//Do nothing
 		} else {
 			searchWord.letterNotInThisWord = searchWord.letterNotInThisWord + string(letter)
 		}
@@ -98,21 +98,31 @@ func filterWordWithThisLetterInThisPosition(positionLetter int, letter string, l
 	return filtreList
 }
 
-func filterWordWithMissingLetters(letters string, listWords []string) (filtreList []string) {
+func filtreRemoveWordWithThisLetter(letter string, listWords []string) (filtreList []string) {
 	var letterIsMissing bool
 	for _, word := range listWords {
 		letterIsMissing = true
-		for _, letter := range letters {
-			if strings.Contains(word, string(letter)) {
-				letterIsMissing = false
-			}
+		if strings.Contains(word, letter) {
+			letterIsMissing = false
 		}
 		if letterIsMissing {
 			filtreList = append(filtreList, word)
 		}
-
 	}
 	return filtreList
+}
+
+// Recursive func
+func filterWordWithMissingLetters(letters string, iteration int, listWords []string) (filtreList []string) {
+	// if iteration = nomber of letter stop recurisv func
+	if utf8.RuneCountInString(letters) <= iteration {
+		filtreList = listWords
+		return filtreList
+	} else {
+		filtreList = filtreRemoveWordWithThisLetter(string(letters[iteration]), listWords)
+		iteration++
+		return filterWordWithMissingLetters(letters, iteration, filtreList)
+	}
 }
 
 // Recursive func

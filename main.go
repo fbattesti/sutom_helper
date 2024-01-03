@@ -15,11 +15,10 @@ func main() {
 	filtreList := filtreByLetterAndPosition(searchWord.knowLetterWithPosition, 0, filtreByLength)
 
 	if len(searchWord.letterNotInThisWord) != 0 {
-		filtreList = filterWordWithMissingLetters(searchWord.letterNotInThisWord, filtreList)
+		filtreList = filterWordWithMissingLetters(searchWord.letterNotInThisWord, 0, filtreList)
 	}
 
 	for _, wordInList := range filtreList {
 		fmt.Println("\t- ", string(wordInList))
 	}
-
 }
